@@ -6,12 +6,24 @@ import kotlinx.coroutines.flow.*
 
 class DataConsumer {
     suspend fun consume(data: Flow<TransformedData>) {
+
         data
             .buffer(5)
-            .collect { value ->
+            .onEach { value ->
                 println("[DataConsumer] consuming ${value}")
                 delay(100)
             }
+            .onCompletion {
+                flush()
+            }
+            .collect()
+
+    }
+
+    private suspend fun flush() {
+        println("[DataConsumer] flush")
+        delay(1000)
+        println("[DataConsumer] flush ends")
     }
 
 }
@@ -25,7 +37,7 @@ private fun makeFlow() = flow {
 }
 suspend fun main() = coroutineScope {
     val flow = makeFlow().map {
-        it*100
+        it * 100
     }
     delay(1000)
     println("Calling flow...")

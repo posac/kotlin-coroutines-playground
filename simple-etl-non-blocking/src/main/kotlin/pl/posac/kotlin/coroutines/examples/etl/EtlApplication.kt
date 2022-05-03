@@ -9,8 +9,9 @@ class EtlApplication {
     private val dataTransformer = DataTransformer()
     private val dataConsumer = DataConsumer()
 
-    suspend fun process() {
+    suspend fun process() = coroutineScope {
         val data = dataProvider.loadData()
+
             .map {
                 dataTransformer.transform(it)
             }
