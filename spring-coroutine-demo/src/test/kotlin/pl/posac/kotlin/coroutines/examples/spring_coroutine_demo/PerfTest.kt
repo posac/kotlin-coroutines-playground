@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 suspend fun main() = coroutineScope{
-    val coroutinCount = 1000
-    val requestCount = 1000
+    val coroutinCount = 400
+    val requestCount = 10
     val client = HttpClient(CIO)
 
     coroutinCount.downTo(0).forEach { coroutinCount ->
