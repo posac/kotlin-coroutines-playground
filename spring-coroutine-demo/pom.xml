@@ -15,7 +15,6 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-
 	</properties>
 	<dependencies>
 		<dependency>
@@ -29,7 +28,6 @@
 		<dependency>
 			<groupId>io.projectreactor.kotlin</groupId>
 			<artifactId>reactor-kotlin-extensions</artifactId>
-			<version>1.1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
@@ -41,26 +39,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains.kotlinx</groupId>
-			<artifactId>kotlinx-coroutines-core</artifactId>
-			<version>1.6.1</version>
-
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlinx</groupId>
-			<artifactId>kotlinx-coroutines-core-jvm</artifactId>
-			<version>1.6.1</version>
-
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlinx</groupId>
-			<artifactId>kotlinx-coroutines-jdk8</artifactId>
-			<version>1.6.1</version>
-
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlinx</groupId>
 			<artifactId>kotlinx-coroutines-reactor</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 
 		<dependency>
@@ -72,16 +51,6 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.ktor</groupId>
-			<artifactId>ktor-client-core-jvm</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>io.ktor</groupId>
-			<artifactId>ktor-client-cio-jvm</artifactId>
-			<version>2.0.1</version>
 		</dependency>
 	</dependencies>
 
