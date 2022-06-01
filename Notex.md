@@ -1,6 +1,5 @@
 # Coroutines examples
 ## Basic coroutine - raw one
-Not recommended to use unless you are creating your custom libraries and want to avoid dependencies to kotlinx.coroutines
 
 Suspend function:
 - is getting additional parameter - continuation
@@ -10,10 +9,8 @@ Suspend function:
   - holds place where we should return
   - is responsible to re-trigger suspended function
 - similar to callbacks but without callbacks
-  
-    
- 
 
+Not recommended to use unless you are creating your custom libraries and want to avoid dependencies to kotlinx.coroutines
 
 
 ##  kotlinx.coroutines
@@ -24,36 +21,39 @@ Suspend function:
   - blocking main thread
   - test
 - async - similar to launch - but designed to calculate values. Recommended usage:
-  - calculate value parallel 
-  
+  - calculate value parallel
+
 ### Structured concurrency
 Each coroutine builders is extension function on CoroutineScope. Because of that starting new coroutine we have to be in some scope.
 This is how we are creating coroutine tree.
-What it is giving to us? 
+What it is giving to us?
 - children inherit context of parent
-- parent waits for all child finish
 - when parent is canceled all children are canceled
-- when child throws exception, parent and other children of parent are destroyed
+- when child throws exception, parent and other children of parent can be destroyed  
 
 ### coroutineScope
-When you are in suspending function and you want to create new coroutine
-you are not allowed since you dont have CoroutineScope.
 
-To solve it you can have to call suspending function coroutineScope to create new scope
+coroutineScope is a suspending function that starts a scope. It re- turns a value produced by the argument function.
 
-![img.png](img.png)
+Unlike async or launch, the body of coroutineScope is called in-place. 
+It formally creates a new coroutine, but it suspends a previous one until the new one is finished, so it does not start any concurrent process. 
 
+
+The provided scope inherits its coroutineContext from the outer scope, but overrides the context’s Job. This way, the produced scope respects parental responsibilities:
+• inherits a context from its parent,
+• awaits for all children before it can finish itself,
+• cancels all its children, when the parent is cancelled.
 
 ### coroutine context
 CoroutineContext is an interface that represents an element or a collection
 of elements. So CoroutineContext is just a way to hold and pass data. By default,
 the parent passes its context to the child, which is one of the parentchild
 relationship effects. We say that the child inherits context from
-its parent. 
+its parent.
 ``` defaultContext + parentContext + childContext ```
 
 
-### Jobs 
+### Jobs
 Conceptually, a job represents a cancellable thing with a lifecycle.
 Formally, Job is an interface, but it has a concrete contract and state,
 so it might be treated similarly to an abstract class.

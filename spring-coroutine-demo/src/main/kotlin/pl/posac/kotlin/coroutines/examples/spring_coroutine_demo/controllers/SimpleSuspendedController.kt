@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.toDuration
-
 @RestController
 class SimpleSuspendedController {
     val log = LoggerFactory.getLogger(javaClass)

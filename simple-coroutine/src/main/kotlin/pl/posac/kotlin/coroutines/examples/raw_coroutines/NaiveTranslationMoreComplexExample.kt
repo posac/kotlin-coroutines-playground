@@ -90,3 +90,5 @@ object NaiveTranslationMoreComplexExample {
         return Unit
     }
 }
+
+fun MoreComplexExample.`Under the hood - step 2`() = Unit

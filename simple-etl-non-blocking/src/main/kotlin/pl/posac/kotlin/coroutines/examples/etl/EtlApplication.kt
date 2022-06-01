@@ -3,7 +3,7 @@ package pl.posac.kotlin.coroutines.examples.etl
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.map
 
-
+fun `etl example`() = Unit
 class EtlApplication {
     private val dataProvider = DataProvider()
     private val dataTransformer = DataTransformer()

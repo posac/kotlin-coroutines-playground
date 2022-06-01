@@ -1,7 +1,5 @@
 package pl.posac.kotlin.coroutines.examples.raw_coroutines
 
-import kotlin.coroutines.Continuation
-
 
 object NaiveTranslationMoreComplexExampleStep1 {
 
@@ -35,3 +33,5 @@ object NaiveTranslationMoreComplexExampleStep1 {
         return id > 0
     }
 }
+
+fun MoreComplexExample.`Under the hood - step 1`() = Unit

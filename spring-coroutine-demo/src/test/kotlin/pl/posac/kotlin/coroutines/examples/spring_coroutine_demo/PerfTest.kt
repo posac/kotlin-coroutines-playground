@@ -84,24 +84,22 @@ private suspend fun stressApi(
             for (webclient in 1..webClientCounts) {
                 launch {
                     val connectionProvider = ConnectionProvider.builder("myConnectionPool${webclient}")
-                        .maxConnections(4000)
-                        .pendingAcquireMaxCount(50000)
+                        .maxConnections(100)
+                        .pendingAcquireMaxCount(1000)
                         .build()
                     val clientHttpConnector =
                         ReactorClientHttpConnector(HttpClient.create(connectionProvider).protocol(HttpProtocol.HTTP11))
                     val webClient = WebClient.builder()
                         .clientConnector(clientHttpConnector)
-
                         .build()
                         .get()
 
 
-                    coroutinCount.downTo(0).forEach { coroutinCount ->
-
+                    coroutinCount.downTo(1).forEach { coroutinCount ->
                         launch {
                             kotlin.runCatching {
                                 measureTime {
-                                    requestCount.downTo(0).forEach { request ->
+                                    requestCount.downTo(1).forEach { request ->
                                         val url =
                                             "http://localhost:8080/getMe/${coroutinCount * requestCount + request}"
                                         webClient

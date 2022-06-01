@@ -6,6 +6,7 @@ import kotlin.coroutines.resume
 
 import kotlin.coroutines.suspendCoroutine
 
+
 fun continueAfterSecond(continuation: Continuation<Boolean>) {
     thread {
         // Potentially we would do something more here - in next coroutines
@@ -14,10 +15,15 @@ fun continueAfterSecond(continuation: Continuation<Boolean>) {
     }
 }
 
-suspend fun main() {
-    println("Before")
-    val result = suspendCoroutine<Boolean> { continuation ->
-        continueAfterSecond(continuation)
+object RawCorutine {
+    suspend fun main() {
+        println("Before")
+        val result = suspendCoroutine<Boolean> { continuation ->
+            continueAfterSecond(continuation)
+        }
+        println("After with result = ${result}")
     }
-    println("After with result = ${result}")
 }
+
+
+typealias `Introcution to simple coroutine, continuation` = RawCorutine

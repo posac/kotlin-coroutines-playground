@@ -1,12 +1,17 @@
 package pl.posac.kotlin.coroutines.examples.lib.job
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
+fun `Jobs examples`(x: () -> Unit) = Unit
+fun `simple job`() = Unit
 fun main() = runBlocking {
     val job = Job()
     launch(job) {
         repeat(5) { num ->
-            delay(num*100L)
+            delay(num * 100L)
             println("Rep$num")
         }
     }

@@ -3,6 +3,7 @@ package pl.posac.kotlin.coroutines.examples.lib.context
 import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
 
+fun `coroutine context`() = Unit
 fun CoroutineScope.log(msg: String) {
     val name = coroutineContext[CoroutineName]?.name
     println("[$name] $msg")
