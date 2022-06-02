@@ -6,7 +6,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 object AwaitExample {
-    fun main() = runBlocking {
+    @JvmStatic
+    fun main(args: Array<String>)  = runBlocking{
         val resultDeferred: Deferred<Int> = async {
             delay(1000L)
             42

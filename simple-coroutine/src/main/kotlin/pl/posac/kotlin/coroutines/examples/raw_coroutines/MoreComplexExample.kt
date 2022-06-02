@@ -1,13 +1,16 @@
 package pl.posac.kotlin.coroutines.examples.raw_coroutines
 
+import kotlinx.coroutines.runBlocking
+
 object MoreComplexExample {
-    suspend fun main() {
+    @JvmStatic
+    fun main(args: Array<String>)  = runBlocking{
         val result1 = getItems(1)
         val result2 = getItems(result1.size)
         try {
             val result3 = getItems(result2.size - 100)
         } catch (e: Exception) {
-            e.printStackTrace()
+            println("Error ${e.message}")
         }
         println("result1=$result1 result2=${result2}")
 

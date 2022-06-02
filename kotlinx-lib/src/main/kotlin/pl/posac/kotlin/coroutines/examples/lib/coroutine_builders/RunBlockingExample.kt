@@ -8,7 +8,8 @@ import kotlinx.coroutines.runBlocking
 fun `run blocking`() = Unit
 
 object RunBlockingExample {
-    fun main() = runBlocking {
+    @JvmStatic
+    fun main(args: Array<String>)  = runBlocking{
         GlobalScope.launch {
             delay(1000L)
             println("World!")

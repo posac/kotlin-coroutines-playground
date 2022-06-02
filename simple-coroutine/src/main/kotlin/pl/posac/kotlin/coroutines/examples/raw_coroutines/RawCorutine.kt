@@ -1,5 +1,6 @@
 package pl.posac.kotlin.coroutines.examples.raw_coroutines
 
+import kotlinx.coroutines.runBlocking
 import kotlin.concurrent.thread
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
@@ -15,7 +16,9 @@ fun continueAfterSecond(continuation: Continuation<Boolean>) {
 }
 
 object RawCorutine {
-    suspend fun main() {
+
+    @JvmStatic
+    fun main(args: Array<String>)  = runBlocking{
         println("Before")
         val result = suspendCoroutine<Boolean> { continuation ->
             continueAfterSecond(continuation)
