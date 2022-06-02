@@ -1,4 +1,9 @@
 # Coroutines examples
+
+A coroutine is an instance of suspendable computation. 
+It is conceptually similar to a thread, in the sense that it takes a block of code to run that works concurrently with the rest of the code.
+However, a coroutine is not bound to any particular thread. It may suspend its execution in one thread and resume in another one.
+
 ## Basic coroutine - raw one
 
 Suspend function:
@@ -74,19 +79,39 @@ parent is not affected).
 new coroutines. It is first in the “Cancelling” and then in the
 “Cancelled” state.
 
-cancelAndJoin
-
 
 ### Exception handling
 
 
 ### Dispatchers
 
-## Channels and Flows
+Defines what thread pool will execute our coroutine.
+There is few predefined dispatchers:
+- Default - default one - designed to run CPU - intensive operations. Thread pool size is equqal to the number of cores
+- Main - mostly for android or other application framework - for example in Android there is only one thread that interacts with ui
+- IO - designed to used when we block thread with IO operations, for instance blocking http calls. Limited to 64 or number of cores if is higher
+- Unconfined - This dispatcher is different from the previous one, as it is not chang- ing a thread at all. When it is started, it runs on the thread on which it was started. If it is resumed, it runs on the thread that resumed it.
+Dispatchers.Default and Dispatchers.IO share the same pool of threads. This is an important optimization. Threads are reused, and often redispatching is not needed.
+
+For instance, lets say you are running on Dispatchers.Default, and then reach withContext(Dispatchers.IO) { ... }. 
+You will stay on the same thread.
+What will change, is that this thread will not count to the Dispatchers.Default limit, but instead to the Dispatchers.IO limit
 
 
 
-Questions?:
+## Channels
 
-when coroutines can switch thread??
-when createing coroutineScope - from where it gets parent??
+The typical cases where we use channels is when on one side values are produced, and on the other, we want to process them.
+
+## Flows
+
+It represents a stream of values that are being asynchronously computed, that supports coroutines (unlike sequences). 
+There are quite a few use cases where Flow is useful
+
+
+The most typical usages of the Flow include:
+• Receiving messages, that are communicated through Server- Sent Events, WebSockets, notifications, etc.
+• Observing user actions,like text changes or clicks.
+• Receiving updates from sensors or other information about
+device, like its localization or orientation.
+• Observing changes on databases.

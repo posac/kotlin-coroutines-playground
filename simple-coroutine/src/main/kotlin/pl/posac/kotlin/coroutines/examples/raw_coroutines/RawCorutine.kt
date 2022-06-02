@@ -9,7 +9,6 @@ import kotlin.coroutines.suspendCoroutine
 
 fun continueAfterSecond(continuation: Continuation<Boolean>) {
     thread {
-        // Potentially we would do something more here - in next coroutines
         Thread.sleep(1000)
         continuation.resume(true)
     }

@@ -1,19 +1,26 @@
 package pl.posac.kotlin.coroutines.examples.lib.context
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlin.coroutines.coroutineContext
 
 fun `coroutine context`() = Unit
 fun CoroutineScope.log(msg: String) {
     val name = coroutineContext[CoroutineName]?.name
-    println("[$name] $msg")
+    println("[${Thread.currentThread().name}][$name] $msg")
 }
+
 fun main() = runBlocking(CoroutineName("main")) {
     log("Started")
     val v1 = async(CoroutineName("c1")) {
         delay(500)
         log("Running async")
-        magic()
+        magicLog()
         42
     }
     launch {
@@ -27,7 +34,6 @@ fun main() = runBlocking(CoroutineName("main")) {
 }
 
 
-suspend fun magic(){
-
-    println("${coroutineContext[CoroutineName]?.name} - magic function")
+suspend fun magicLog(msg: String = "magic function") {
+    println("[${Thread.currentThread().name}]${coroutineContext[CoroutineName]?.name} - ${msg}")
 }

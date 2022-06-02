@@ -10,6 +10,7 @@ import pl.posac.kotlin.coroutines.examples.lib.coroutine_builders.`run blocking`
 import pl.posac.kotlin.coroutines.examples.lib.coroutine_scope.`coroutine scope`
 import pl.posac.kotlin.coroutines.examples.lib.coroutine_scope.`supervisor coroutine scope`
 import pl.posac.kotlin.coroutines.examples.lib.dispatchers.`dispatchers example`
+import pl.posac.kotlin.coroutines.examples.lib.dispatchers.`dispatchers limited parallerism example`
 import pl.posac.kotlin.coroutines.examples.lib.exceptions.`exception handling`
 import pl.posac.kotlin.coroutines.examples.lib.exceptions.`exception handling - cancellation exception`
 import pl.posac.kotlin.coroutines.examples.lib.flows.`flows examples`
@@ -39,15 +40,16 @@ fun `Introduction to kotlin lib and more advanced concepts`() {
     }
 
     `scope functions` {
-        `coroutine scope`() //TODO
+        `coroutine scope`()
         `supervisor coroutine scope`()
     }
 
-    `dispatchers example`() //TODO
+    `dispatchers example`()
+    `dispatchers limited parallerism example`()
 
 
-    `channels examples`() // TODO
-    `flows examples`() //TODO
+    `channels examples`()
+    `flows examples`()
 
 }
 
